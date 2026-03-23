@@ -5,14 +5,13 @@ import { Navbar } from "@/components/navbar";
 import { AIPromptInput } from "@/components/prompt-input";
 import { RightSidebar } from "@/components/right-sidebar";
 import { Button } from "@/components/ui/button";
+import { useEditorStore } from "@/store/useEditorState";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
 export default function Home() {
-  const imageSelected = false;
-
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [image, setImage] = useState("");
+  const {image, setImage} = useEditorStore();
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     const reader = new FileReader();
