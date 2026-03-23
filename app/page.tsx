@@ -1,6 +1,7 @@
 import { LeftSidebar } from "@/components/left-sidebar";
 import { Navbar } from "@/components/navbar";
 import { AIPromptInput } from "@/components/prompt-input";
+import { RightSidebar } from "@/components/right-sidebar";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
@@ -56,6 +57,8 @@ export default function Home() {
                 <AIPromptInput />
             </div>
           </main>
+
+          <RightSidebar />
       </div>
     </div>
   )
