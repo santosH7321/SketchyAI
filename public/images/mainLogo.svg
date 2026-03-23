@@ -1,0 +1,49 @@
+<svg width="420" height="120" viewBox="0 0 420 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Yellow gradient -->
+    <linearGradient id="yellowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#FFB300"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="420" height="120" rx="18" fill="#111827"/>
+
+  <!-- Sketch Circle -->
+  <circle cx="60" cy="60" r="35"
+    fill="none"
+    stroke="url(#yellowGrad)"
+    stroke-width="3"
+    stroke-dasharray="5,4"/>
+
+  <!-- Brush stroke inside -->
+  <path d="M40 70 Q60 30 80 65"
+    stroke="url(#yellowGrad)"
+    stroke-width="4"
+    fill="none"
+    stroke-linecap="round"/>
+
+  <!-- Small spark -->
+  <path d="M85 30 L90 20 M90 20 L95 30 M90 20 L90 35"
+    stroke="#FFD54F"
+    stroke-width="2"
+    stroke-linecap="round"/>
+
+  <!-- Text -->
+  <text x="110" y="68"
+    font-family="Poppins, sans-serif"
+    font-size="38"
+    font-weight="700"
+    fill="url(#yellowGrad)">
+    SketchyAI
+  </text>
+
+  <!-- Underline -->
+  <path d="M110 80 Q220 100 360 80"
+    stroke="#FFD54F"
+    stroke-width="3"
+    fill="none"
+    stroke-dasharray="6,3"
+    stroke-linecap="round"/>
+</svg>
