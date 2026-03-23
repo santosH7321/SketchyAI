@@ -1,5 +1,6 @@
 import { LeftSidebar } from "@/components/left-sidebar";
 import { Navbar } from "@/components/navbar";
+import { AIPromptInput } from "@/components/prompt-input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
@@ -49,6 +50,10 @@ export default function Home() {
                   </div>
                 )}
               </div>
+            </div>
+
+            <div className="shrink-0 bg-zinc-950 border-t border-zinc-800 p-4 lg:p-6 z-40">
+                <AIPromptInput />
             </div>
           </main>
       </div>
