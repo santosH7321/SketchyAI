@@ -1,29 +1,27 @@
 <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Yellow gradient -->
-    <linearGradient id="yellowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="yellowBold" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#FFD54F"/>
       <stop offset="100%" stop-color="#FFB300"/>
     </linearGradient>
   </defs>
 
-  <!-- Sketch Circle -->
-  <circle cx="60" cy="60" r="32"
-    fill="none"
-    stroke="url(#yellowGrad)"
-    stroke-width="3"
-    stroke-dasharray="5,4"/>
+  <!-- Main Circle Background -->
+  <circle cx="60" cy="60" r="50" fill="url(#yellowBold)"/>
 
-  <!-- Brush Stroke -->
-  <path d="M40 70 Q60 30 80 65"
-    stroke="url(#yellowGrad)"
-    stroke-width="5"
-    fill="none"
-    stroke-linecap="round"/>
+  <!-- Inner AI Brush Symbol -->
+  <path d="M40 75 Q60 30 80 70"
+        stroke="#111827"
+        stroke-width="6"
+        fill="none"
+        stroke-linecap="round"/>
 
-  <!-- Spark (AI magic) -->
-  <path d="M82 35 L88 25 M88 25 L94 35 M88 25 L88 40"
-    stroke="#FFD54F"
-    stroke-width="2"
-    stroke-linecap="round"/>
+  <!-- Dot (AI node / creativity point) -->
+  <circle cx="60" cy="45" r="5" fill="#111827"/>
+
+  <!-- Small accent stroke -->
+  <path d="M85 40 L95 30"
+        stroke="#111827"
+        stroke-width="4"
+        stroke-linecap="round"/>
 </svg>

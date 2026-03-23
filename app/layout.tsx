@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SketchyAI",
+  title: "Sketchy AI",
   description: "Image modification platform",
 };
 

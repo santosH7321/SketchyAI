@@ -1,9 +1,9 @@
-import React from 'react'
+import { Navbar } from "@/components/navbar";
 
-const Home = () => {
+export default function Home() {
   return (
-    <div>Home</div>
+    <div className="w-full h-dvh flex flex-col overflow-hidden">
+      <Navbar />
+    </div>
   )
 }
-
-export default Home
