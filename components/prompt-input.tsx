@@ -34,6 +34,7 @@ import {
   PromptInputTools,
   usePromptInputAttachments,
 } from "@/components/ai-elements/prompt-input";
+import { useEditorStore } from "@/store/useEditorState";
 import { CheckIcon, GlobeIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -102,6 +103,7 @@ const PromptInputAttachmentsDisplay = () => {
 };
 
 export const AIPromptInput = () => {
+  const { setPrompt, generateEdit } = useEditorStore();
   const [model, setModel] = useState<string>(models[0].id);
   const [modelSelectorOpen, setModelSelectorOpen] = useState(false);
   const [status, setStatus] = useState<
@@ -119,6 +121,10 @@ export const AIPromptInput = () => {
     }
 
     setStatus("submitted");
+
+    setPrompt(message.text);
+
+    generateEdit();
 
     console.log("Submitting message:", message);
 
