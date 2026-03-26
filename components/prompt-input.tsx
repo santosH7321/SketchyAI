@@ -103,7 +103,7 @@ const PromptInputAttachmentsDisplay = () => {
 };
 
 export const AIPromptInput = () => {
-  const { setPrompt, generateEdit, isLoading} = useEditorStore();
+  const { setPrompt, generateEdit, isLoading, setUserFiles} = useEditorStore();
   const [model, setModel] = useState<string>(models[0].id);
   const [modelSelectorOpen, setModelSelectorOpen] = useState(false);
   const [status, setStatus] = useState<
@@ -121,9 +121,10 @@ export const AIPromptInput = () => {
       return;
     }
 
-    setStatus("submitted");
+    // setStatus("submitted");
 
     setPrompt(message.text);
+    setUserFiles(message.files)
 
     generateEdit();
 

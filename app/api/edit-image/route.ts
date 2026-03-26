@@ -17,7 +17,7 @@ function cleanBase64Image(dataUrl: string): string {
 
 export async function POST(request: Request) {
   try {
-    const { imageBase64, prompt } = await request.json();
+    const { imageBase64, prompt, userFiles } = await request.json();
 
     const ai = new GoogleGenAI({
       apiKey: process.env.GEMINI_API_KEY,
@@ -31,10 +31,24 @@ export async function POST(request: Request) {
           data: cleanBase64Image(imageBase64),
         },
       },
+      
     ];
 
+
+    if(userFiles && Array.isArray(userFiles) && userFiles.length > 0) {
+      const processedFiles = userFiles.map((file) => {
+        return {
+          inlineData: { 
+            mimeType: getMimeType(file.url),
+            data: cleanBase64Image(file.url),
+          },
+        };
+      });
+      contents.push(...processedFiles);
+    }
+
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash-image",
+      model: process.env.AI_MODEL as string,
       contents,
     });
 
