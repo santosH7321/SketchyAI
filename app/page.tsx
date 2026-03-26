@@ -11,7 +11,7 @@ import { useRef } from "react";
 
 export default function Home() {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const {image, setImage} = useEditorStore();
+  const {image, setImage, showHistory} = useEditorStore();
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     const reader = new FileReader();
@@ -87,7 +87,7 @@ export default function Home() {
             </div>
           </main>
 
-          <RightSidebar />
+          {showHistory && <RightSidebar />}
       </div>
     </div>
   )
