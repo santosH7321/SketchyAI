@@ -1,5 +1,6 @@
 "use client"
 
+import ImageGenerationLoading from "@/components/image-generation";
 import { LeftSidebar } from "@/components/left-sidebar";
 import { Navbar } from "@/components/navbar";
 import { AIPromptInput } from "@/components/prompt-input";
@@ -11,7 +12,7 @@ import { useRef } from "react";
 
 export default function Home() {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const {image, setImage, showHistory} = useEditorStore();
+  const {image, setImage, showHistory, isLoading} = useEditorStore();
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     const reader = new FileReader();
@@ -80,6 +81,7 @@ export default function Home() {
                   </div>
                 )}
               </div>
+              {isLoading && <ImageGenerationLoading />}
             </div>
 
             <div className="shrink-0 bg-zinc-950 border-t border-zinc-800 p-4 lg:p-6 z-40">
