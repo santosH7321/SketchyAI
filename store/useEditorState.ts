@@ -31,7 +31,7 @@ export const useEditorStore = create<EditorState>()(
             }
 
             const data = await response.json();
-            console.log("data", data)
+            set(() => ({ image: data.result }))
         },
         setPrompt: (prompt: string) => set({ prompt }),
     })),

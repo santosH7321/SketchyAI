@@ -7,7 +7,7 @@ import { RightSidebar } from "@/components/right-sidebar";
 import { Button } from "@/components/ui/button";
 import { useEditorStore } from "@/store/useEditorState";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 export default function Home() {
   const fileInputRef = useRef<HTMLInputElement>(null);
