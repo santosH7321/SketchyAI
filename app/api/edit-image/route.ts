@@ -56,12 +56,15 @@ export async function POST(request: Request) {
       text: textResponse,
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(error);
+
+    const message =
+      error instanceof Error ? error.message : typeof error === "string" ? error : String(error);
 
     return NextResponse.json({
       success: false,
-      error: error.message,
+      error: message,
     });
   }
 }
