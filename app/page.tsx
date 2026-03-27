@@ -1,5 +1,6 @@
 "use client"
 
+import ImageEditor from "@/components/image-editor";
 import ImageGenerationLoading from "@/components/image-generation";
 import { LeftSidebar } from "@/components/left-sidebar";
 import { Navbar } from "@/components/navbar";
@@ -77,7 +78,7 @@ export default function Home() {
                   </div>
                 ) : (
                   <div className="relative w-full h-full flex items-center justify-center">
-                    <Image src={image} height="500" width="500" alt="img" />
+                    <ImageEditor />
                   </div>
                 )}
               </div>
