@@ -8,6 +8,7 @@ const ImageEditor = () => {
     const maskCanvasRef = useRef<HTMLCanvasElement>(null);
     const imgRef = useRef<HTMLImageElement>(null);
     const startPosRef = useRef<Point | null>(null);
+    const isDrawingRef = useRef<boolean>(false);
 
     const {image, selectedTool} = useEditorStore()
 
@@ -58,6 +59,8 @@ const ImageEditor = () => {
 
         e.preventDefault();
 
+        isDrawingRef.current = true;
+
         const pos = getPointerPos(e);
         startPosRef.current = pos;
 
@@ -99,14 +102,41 @@ const ImageEditor = () => {
         const y = (e.clientY - rect.top) * (canvasRef.current.height / rect.height);
 
         return {x, y};
-    }
+    };
+
+    const drawMove = (e: React.PointerEvent) => {
+        if(!isDrawingRef.current) return;
+        const startPos = startPosRef.current;
+        if(!startPos) return;
+
+        e.preventDefault();
+
+        const currentPos = getPointerPos(e);
+
+        if(selectedTool === ToolType.BRUSH || selectedTool === ToolType.ERASER){
+            updateMask(startPos, currentPos);
+            startPosRef.current = currentPos;
+        }
+    };
+
+    const endDrawing = () => {
+        isDrawingRef.current = false;
+    };
+
 
     return (
-        <div className='w-full h-full flex items-center justify-center'>
+        <div className='w-full h-full flex-col items-center justify-center'>
             <canvas 
                 onPointerDown={startDrawing}
+                onPointerMove={drawMove}
+                onPointerUp={endDrawing}
                 ref={canvasRef}
                 className='max-w-full max-h-full object-cover'
+            ></canvas>
+
+            <canvas
+                ref={maskCanvasRef}
+                className='max-w-full max-h-full'
             ></canvas>
         </div>
     )
