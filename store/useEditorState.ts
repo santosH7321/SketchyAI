@@ -1,3 +1,4 @@
+import { ToolType } from "@/lib/constants";
 import { FileUIPart } from "ai";
 import { create } from "zustand"
 import { devtools } from "zustand/middleware"
@@ -8,6 +9,7 @@ type EditorState = {
     history: string[];
     historyIndex: number;
     showHistory: boolean;
+    selectedTool: ToolType;
     setHistory: (history: string[]) => void;
     setHistoryIndex: (index: number) => void;
     toggleHistory: () => void;
@@ -22,6 +24,7 @@ type EditorState = {
     generateEdit: () => Promise<void>;
     applyFilter: (prompt: string) => void;
     applyExpansion: (aspectRatio: string) => void;
+    setSelectedTool: (tool: ToolType) => void;
 }
 
 export const useEditorStore = create<EditorState>()(
@@ -33,6 +36,10 @@ export const useEditorStore = create<EditorState>()(
         showHistory: false,
         isLoading: false,
         userFiles: [],
+        selectedTool: ToolType.MOVE,
+        setSelectedTool: (tool: ToolType) => {
+            set({selectedTool: tool});
+        },
         setUserFiles: (files: FileUIPart[]) => {
             set({userFiles: files})
         },
