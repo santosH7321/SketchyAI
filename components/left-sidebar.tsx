@@ -27,7 +27,7 @@ import { ToolButton } from "@/components//tool-button";
 import { useEditorStore } from "@/store/useEditorState";
 
 export const LeftSidebar = () => {
-  const {applyFilter, isLoading, applyExpansion, setSelectedTool, selectedTool} = useEditorStore();
+  const {applyFilter, isLoading, applyExpansion, setSelectedTool, selectedTool, setBrushSize, brushSize} = useEditorStore();
   return (
     <aside className="hidden md:flex w-80 flex-col border-r border-zinc-800 bg-zinc-950/50 z-20 shrink-0 h-full">
       <ScrollArea className="h-full w-full">
@@ -76,11 +76,12 @@ export const LeftSidebar = () => {
               </div>
 
               <Slider
-                defaultValue={[10]}
+                defaultValue={[brushSize]}
                 max={100}
                 min={5}
                 step={1}
-                onValueChange={()=>{
+                onValueChange={(value)=>{
+                  setBrushSize(value[0]);
                 }}
                 className="py-2 [&>.relative>.absolute]:bg-yellow-500 **:[[role=slider]]:border-yellow-500 **:[[role=slider]]:bg-zinc-950 **:[[role=slider]]:ring-offset-zinc-950 **:[[role=slider]]:focus-visible:ring-yellow-500"
               />

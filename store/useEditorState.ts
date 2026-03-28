@@ -1,5 +1,6 @@
 import { ToolType } from "@/lib/constants";
 import { FileUIPart } from "ai";
+import { number } from "motion/react";
 import { create } from "zustand"
 import { devtools } from "zustand/middleware"
 
@@ -25,6 +26,8 @@ type EditorState = {
     applyFilter: (prompt: string) => void;
     applyExpansion: (aspectRatio: string) => void;
     setSelectedTool: (tool: ToolType) => void;
+    brushSize: number,
+    setBrushSize: (size:number) => void,
 }
 
 export const useEditorStore = create<EditorState>()(
@@ -37,6 +40,10 @@ export const useEditorStore = create<EditorState>()(
         isLoading: false,
         userFiles: [],
         selectedTool: ToolType.MOVE,
+        brushSize: 100,
+        setBrushSize: (size:number) => {
+            set({brushSize: size});
+        },
         setSelectedTool: (tool: ToolType) => {
             set({selectedTool: tool});
         },
