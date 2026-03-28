@@ -17,7 +17,7 @@ function cleanBase64Image(dataUrl: string): string {
 
 export async function POST(request: Request) {
   try {
-    const { imageBase64, prompt, userFiles, aspectRatio} = await request.json();
+    const { imageBase64, prompt, userFiles, aspectRatio, maskBase64} = await request.json();
 
     const ai = new GoogleGenAI({
       apiKey: process.env.GEMINI_API_KEY,
@@ -31,8 +31,17 @@ export async function POST(request: Request) {
           data: cleanBase64Image(imageBase64),
         },
       },
-      
     ];
+
+
+    if(maskBase64){
+      contents.push({
+        inlineData: { 
+          mimeType: "image/png",
+          data: cleanBase64Image(maskBase64),
+        },
+      });
+    }
 
 
     if(userFiles && Array.isArray(userFiles) && userFiles.length > 0) {

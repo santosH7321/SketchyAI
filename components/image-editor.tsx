@@ -14,7 +14,7 @@ const ImageEditor = () => {
     const startPosRef = useRef<Point | null>(null);
     const isDrawingRef = useRef<boolean>(false);
 
-    const {image, selectedTool, brushSize} = useEditorStore()
+    const {image, selectedTool, brushSize, setMask, mask} = useEditorStore()
 
     const draw = useCallback(() => {
         if(!canvasRef.current) return;
@@ -49,7 +49,7 @@ const ImageEditor = () => {
                 data[i] = 255; // red
                 data[i+1] = 0; // green
                 data[i+2] = 0; // blue
-                data[i+3] = 180; // alpha
+                data[i+3] = 100; // alpha
             } else {
                 // if black side
                 data[i+3] = 0; // full transparent
@@ -166,11 +166,18 @@ const ImageEditor = () => {
 
     const endDrawing = () => {
         isDrawingRef.current = false;
+
+        if(maskCanvasRef.current){
+            const dataUrl = maskCanvasRef.current?.toDataURL("image/png");
+            setMask(dataUrl);
+        }
+        
+
     };
 
 
     return (
-        <div className='w-full h-full flex-col items-center justify-center'>
+        <div className='w-full h-full flex items-center justify-center'>
              <canvas
                 ref={overlayCanvasRef}
                 className='max-w-full max-h-full'
@@ -187,6 +194,7 @@ const ImageEditor = () => {
                 ref={maskCanvasRef}
                 className='max-w-full max-h-full'
             ></canvas>
+
         </div>
     )
 }
