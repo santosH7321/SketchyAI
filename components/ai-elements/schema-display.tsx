@@ -103,11 +103,21 @@ export const SchemaDisplayPath = ({
     '<span class="text-blue-600 dark:text-blue-400">{$1}</span>'
   );
 
+  // Use children only when it's a primitive that can be safely stringified;
+  // otherwise fall back to the generated highlightedPath to avoid passing non-string to dangerouslySetInnerHTML.
+  const innerHTML =
+    typeof children === "string" ||
+    typeof children === "number" ||
+    typeof children === "bigint" ||
+    typeof children === "boolean"
+      ? String(children)
+      : highlightedPath;
+
   return (
     <span
       className={cn("font-mono text-sm", className)}
       // oxlint-disable-next-line eslint-plugin-react(no-danger)
-      dangerouslySetInnerHTML={{ __html: children ?? highlightedPath }}
+      dangerouslySetInnerHTML={{ __html: innerHTML }}
       {...props}
     />
   );
